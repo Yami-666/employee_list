@@ -1,0 +1,32 @@
+{% extends "employee_register/base.html" %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead class="border-buttom font-weight-bold">
+        <tr>
+            <td>Дата</td>
+            <td>Зарплата за текущий день</td>
+            <td>Присутствие</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in statement %}
+        <tr>
+            <td>{{item.date_work}}</td>
+            <td>{{item.salary}}</td>
+            <td>{{item.isAttended}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="col-md-4">
+    <a href="{% url 'statement_insert' employee.id %}" class="btn btn-outline-success">
+        Add new
+    </a>
+    <a href="{% url 'get_employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+        Back to list
+    </a>
+</div>
+
+{%endblock content %}

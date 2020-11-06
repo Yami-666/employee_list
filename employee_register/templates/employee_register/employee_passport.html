@@ -1,0 +1,34 @@
+{% extends "employee_register/base.html" %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead class="border-buttom font-weight-bold">
+        <tr>
+            <td>ФИО</td>
+            <td>Серия и номер</td>
+            <td>Адресс паспорт</td>
+            <td>Паспорт выдан</td>
+            <td>Код-подразделения</td>
+            <td>Дата выдачи</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{passport.fullname}}</td>
+            <td>{{passport.serial_number}}</td>
+            <td>{{passport.address}}</td>
+            <td>{{passport.issed}}</td>
+            <td>{{passport.code_subdivision}}</td>
+            <td>{{passport.date_of_issed}}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="col-md-4">
+    <a href="{% url 'get_employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+        Back to list
+    </a>
+</div>
+
+
+{%endblock content %}

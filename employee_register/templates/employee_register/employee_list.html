@@ -1,0 +1,65 @@
+{% extends "employee_register/base.html" %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead class="border-buttom font-weight-bold">
+        <tr>
+            <td>Фото</td>
+            <td>ФИО</td>
+            <td>Телефон</td>
+            <td>Должность</td>
+            <td>Подразделение</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employee_list %}
+        
+        <tr>
+            {% if employee.url_photo%}
+            <td><img style="max-width: 100px; max-height: 100px" src="{{employee.url_photo.url}}" alt="Error"></td>
+            {% endif %}
+            <td>{{employee.passport.fullname}}</td>
+            <td>{{employee.phone}}</td>
+            {% for position in employee.position.all %}
+            <td>{{position}}</td>
+            {% endfor %}
+            {% for unit in employee.unit.all %}
+            <td>{{unit}}</td>
+            {% endfor %}
+            <td>
+                <a href="{% url 'get_passport' employee.id %}" class="btn text-secondary px-0">
+                    passport
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'get_statement_list' employee.id %}" class="btn text-secondary px-0">
+                    statement
+                </a>
+            </td>
+            <td>
+
+            </td>
+            <td>
+                <a href="{% url 'employee_update' employee.id %}" class="btn text-secondary px-0">
+                    edit
+                </a>
+            </td>
+            <td>
+                <form action="{% url 'employee_delete' employee.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'employee_insert' %}" class="btn btn-outline-success">
+    Add new
+</a>
+
+
+
+{% endblock content %}

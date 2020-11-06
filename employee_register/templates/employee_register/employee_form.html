@@ -1,0 +1,21 @@
+{% extends "employee_register/base.html" %}
+
+{% block content %}
+<table>
+    <form action="" method="POST" autocomplete="yes" enctype="multipart/form-data">
+        {{eForm.as_p}}
+        {{pForm.as_p}}
+        <div class="col-md-8">
+            {%csrf_token%}
+            <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
+        </div>
+    </form>
+    <div class="col-md-4">
+        <a href="{% url 'get_employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+            Back to list
+        </a>
+    </div>
+</table>
+
+
+{% endblock content %}
