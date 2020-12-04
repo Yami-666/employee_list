@@ -60,7 +60,9 @@ def statement_form(request, id):
 
 def employee_delete(request, id):
     employee = Employee.objects.get(pk=id)
+    passport = employee.passport
     employee.delete()
+    passport.delete()
     return redirect('/employee/list/')
 
 
