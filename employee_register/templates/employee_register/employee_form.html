@@ -3,15 +3,23 @@
 {% block content %}
 <table>
     <form action="" method="POST" autocomplete="yes" enctype="multipart/form-data">
-        {{eForm.as_p}}
-        {{pForm.as_p}}
-        <div class="col-md-8">
+        {% for field in eForm %}
+            <div class="col-md-4">{{field.label_tag}}</div>
+            <div class="col-md-4">{{field}}</div>
+        {% endfor %}
+
+        {% for field in pForm %}
+            <div class="col-md-4">{{field.label_tag}}</div>
+            <div class="col-md-4">{{field}}</div>
+        {% endfor %}
+
+        <div class="col-md-4" style="margin-top: 20px;">
             {%csrf_token%}
             <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
         </div>
     </form>
     <div class="col-md-4">
-        <a href="{% url 'get_employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+        <a style="margin-top: 20px; "href="{% url 'get_employee_list' %}" class="btn btn-secondary btn-block btn-lg">
             Back to list
         </a>
     </div>
